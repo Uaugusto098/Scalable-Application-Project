@@ -17,7 +17,7 @@ interface OscSender {
     fun buildOscMessage(address: String,numberArg: Number):ByteArray
     fun padOscString(value:String): ByteArray }
 
-class UdpOscSender(ip:String,port:Int,address:String,value:Number,onResult: (String) -> Unit):
+class UdpOscSender():
     OscSender {
 
     override fun padOscString(value: String): ByteArray {

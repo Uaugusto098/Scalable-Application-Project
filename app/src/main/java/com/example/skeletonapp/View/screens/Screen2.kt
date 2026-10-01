@@ -21,10 +21,10 @@ import com.example.skeletonapp.View.widgets.ButtonEdit
 
 
 @Composable
-fun MainScreen2(ip: String, porta: Int, onVoltar: () -> Unit) {
+fun Screen2(ip: String, porta: Int, onVoltar: () -> Unit) {
 
     Surface(modifier = Modifier.fillMaxSize()) {
-        var portaString = porta.toString()
+
 
         Box(
             modifier = Modifier
@@ -38,7 +38,7 @@ fun MainScreen2(ip: String, porta: Int, onVoltar: () -> Unit) {
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(text = "$ip")
-                Text(text = "$portaString")
+                Text(text = "$porta")
                 Spacer(Modifier.height(20.dp))
                 ButtonEdit(
                     onClick = { onVoltar() },
