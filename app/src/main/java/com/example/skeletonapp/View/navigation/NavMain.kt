@@ -9,11 +9,13 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.example.skeletonapp.Model.osc.OscSender
 import com.example.skeletonapp.Model.osc.UdpOscSender
+import com.example.skeletonapp.Model.repository.MainRepository
 import com.example.skeletonapp.View.screens.MainScreen
 import com.example.skeletonapp.View.screens.Screen2
-import com.example.skeletonapp.ViewModel.OscViewModel
 import com.example.skeletonapp.ViewModel.Screen1ViewModel
+import com.example.skeletonapp.ViewModel.Screen2ViewModel
 
 
 //Arquivo responsável pela lógica das navegações de tela.
@@ -33,25 +35,32 @@ fun AppNavigation() {
 
             //TELA 1
             entry<ScreenKey1> {
-                val viewModel: Screen1ViewModel = viewModel()
+                val viewModel: Screen1ViewModel = viewModel {
+                    Screen1ViewModel(repository = MainRepository(UdpOscSender()))
+                }
                 val state by viewModel.uiState.collectAsStateWithLifecycle()
                 MainScreen(
                     Conectar = { ip, porta -> backStack.add(ScreenKey2(ip = ip, porta = porta)) },
                     stateScreen = state,
                     IpChange = viewModel::IpChange,
                     PortChange = viewModel::PortChange,
-                    //OscClick =
+                    OscClick = viewModel::OscClick
 
 
                 )
             }
             //TELA 2
             entry<ScreenKey2> { key ->
-
+                val viewModel: Screen2ViewModel = viewModel {
+                    Screen2ViewModel(key.ip, key.porta, MainRepository(UdpOscSender()))
+                }
+                val state by viewModel.uiState.collectAsStateWithLifecycle()
                 Screen2(
-                    ip = key.ip,
-                    porta = key.porta,
-                    onVoltar = { backStack.removeLastOrNull() })
+                    state = state,
+                    onVoltar ={backStack.removeLastOrNull()},
+                    OscClick = viewModel::disparoCenas2
+
+                    )
             }
 
         }
