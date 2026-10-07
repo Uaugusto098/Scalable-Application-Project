@@ -1,16 +1,16 @@
 package com.example.skeletonapp.ViewModel.UiState
 
 data class Screen1UiState(
-    val ultimaCena: String? = null,
-    val enviando: Boolean = false,
-    val erro: String? = null,
-    val destino: String? = null,
+    val lastCue: String? = null,
+    val sending: Boolean = false,
+    val error: String? = null,
+    val destiny: String? = null,
     val ip: String = "",
-    val porta: String = ""
+    val port: String = ""
 ) {
 
-    val portaInt: Int? get() = porta.toIntOrNull()?.takeIf { it in 1..346789 }
-    val verificacaoConexao: Boolean get() = ip.isNotBlank() && porta != null
+    val portInt: Int? get() = port.toIntOrNull()?.takeIf { it in 1..346789 }
+    val connectionVerify: Boolean get() = ip.isNotBlank() && port!= null
 
 
 }

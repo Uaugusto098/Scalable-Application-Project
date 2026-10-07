@@ -1,5 +1,7 @@
 package com.example.skeletonapp.Model.osc
 
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.DatagramPacket
@@ -13,11 +15,12 @@ import java.nio.ByteBuffer
 
 interface OscSender {
 
-    suspend fun send(ip:String,port: Int,address:String,value: Number,onResult:(String)->Unit)
+    suspend fun send(ip:String,port: Int,address:String,value: Number)
     fun buildOscMessage(address: String,numberArg: Number):ByteArray
     fun padOscString(value:String): ByteArray }
 
-class UdpOscSender():
+@Singleton
+class UdpOscSender @Inject constructor():
     OscSender {
 
     override fun padOscString(value: String): ByteArray {
@@ -48,7 +51,7 @@ class UdpOscSender():
         port: Int,
         address: String,
         value: Number,
-        onResult: (String) -> Unit
+
     ) {
         withContext(Dispatchers.IO) {
             val packet = buildOscMessage(address, value)
@@ -62,6 +65,8 @@ class UdpOscSender():
 
 
     }
+
+
 
 
 

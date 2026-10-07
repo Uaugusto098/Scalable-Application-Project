@@ -15,6 +15,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,14 +34,13 @@ import com.example.skeletonapp.ViewModel.UiState.Screen1UiState
 fun Screen2(state: Screen1UiState, OscClick: (String) -> Unit, onVoltar: () -> Unit) {
 
     Surface(modifier = Modifier.fillMaxSize()) {
-        val localContext = LocalContext.current
+       var lastClick by remember { mutableStateOf(0L) }
 
         Box(
             modifier = Modifier
                 .wrapContentSize(align = Alignment.Center)
                 .background(Color(0xFF555934))
-                .width(1000.dp)
-                .height(1000.dp)
+
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -53,7 +56,7 @@ fun Screen2(state: Screen1UiState, OscClick: (String) -> Unit, onVoltar: () -> U
                         .height(50.dp),
                     textColors = Color.Black,
                     fontSize = 15.sp,
-                    enabled = state.verificacaoConexao//resolver bug do enable, botao fica desativo mesmo com ip e porta, state.verificarconexao nao esta funcionando aq
+                    enabled = state.connectionVerify
                 )
                 Spacer(Modifier.height(20.dp))
                 ButtonEdit(
@@ -64,14 +67,19 @@ fun Screen2(state: Screen1UiState, OscClick: (String) -> Unit, onVoltar: () -> U
                         .height(50.dp),
                     textColors = Color.Black,
                     fontSize = 15.sp,
-                    enabled = state.verificacaoConexao
+                    enabled = state.connectionVerify
 
                 )
 
                 Spacer(Modifier.height(20.dp))
                 ButtonEdit(
                     onClick = {
-                        onVoltar()
+                        val time=System.currentTimeMillis()
+                        if(time-lastClick>=2000){
+                            lastClick= time
+                            onVoltar()
+                        }
+
                     },
                     text = "Voltar ",
                     Modifier

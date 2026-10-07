@@ -55,17 +55,17 @@ fun MainScreen(
                 onValueChange = IpChange,
                 label = { Text("Digite o IP aqui: ") })
             OutlinedTextField(
-                value = stateScreen.porta,
+                value = stateScreen.port,
                 onValueChange = PortChange,
                 label = { Text("Digite a Porta aqui: ") })
             ButtonEdit(
                 onClick = {
-                    stateScreen.portaInt?.let { porta -> Conectar(stateScreen.ip, porta) }
+                    stateScreen.portInt?.let { porta -> Conectar(stateScreen.ip, porta) }
                 },
                 text = "Ajuda",
                 modifier = Modifier.offset(y = 30.dp),
                 textColors = Color.Black,
-                enabled = stateScreen.verificacaoConexao
+                enabled = stateScreen.connectionVerify
             )
             Spacer(Modifier.height(20.dp))
             ButtonEdit(
@@ -74,7 +74,7 @@ fun MainScreen(
                 text = "DisparoOsc",
                 modifier = Modifier.offset(y = 30.dp),
                 textColors = Color.Black,
-                enabled = stateScreen.verificacaoConexao
+                enabled = stateScreen.connectionVerify
             )
 
 
