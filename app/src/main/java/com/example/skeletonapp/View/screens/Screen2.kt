@@ -5,16 +5,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,15 +24,22 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.skeletonapp.View.widgets.ButtonEdit
-import com.example.skeletonapp.ViewModel.Screen2ViewModel
-import com.example.skeletonapp.ViewModel.UiState.Screen1UiState
+import com.example.skeletonapp.ViewModel.ViewScreen2
 
 
 @Composable
-fun Screen2(state: Screen1UiState, OscClick: (String) -> Unit, onVoltar: () -> Unit) {
+fun Screen2(stateScreen2: ViewScreen2, OscClick: (String) -> Unit, onVoltar: () -> Unit) {
+
+    val context=LocalContext.current
+    LaunchedEffect(stateScreen2.erro){
+        stateScreen2.erro?.let { mensagem->
+            if(mensagem.isNotEmpty()){Toast.makeText(context,mensagem, Toast.LENGTH_LONG).show()}
+        }
+    }
 
     Surface(modifier = Modifier.fillMaxSize()) {
        var lastClick by remember { mutableStateOf(0L) }
+
 
         Box(
             modifier = Modifier
@@ -49,25 +54,28 @@ fun Screen2(state: Screen1UiState, OscClick: (String) -> Unit, onVoltar: () -> U
 
                 Spacer(Modifier.height(20.dp))
                 ButtonEdit(
-                    onClick = { OscClick("1") },
+                    onClick = { OscClick("1")
+                            },
                     text = "Cena 1",
                     Modifier
                         .width(100.dp)
                         .height(50.dp),
                     textColors = Color.Black,
                     fontSize = 15.sp,
-                    enabled = state.connectionVerify
+                    enabled = stateScreen2.connectionVerify
                 )
                 Spacer(Modifier.height(20.dp))
                 ButtonEdit(
-                    onClick = { OscClick("2") },
+                    onClick = {
+                        OscClick("2")
+                    },
                     text = "Cena 2 ",
                     Modifier
                         .width(100.dp)
                         .height(50.dp),
                     textColors = Color.Black,
                     fontSize = 15.sp,
-                    enabled = state.connectionVerify
+                    enabled = stateScreen2.connectionVerify
 
                 )
 
