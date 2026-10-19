@@ -1,14 +1,15 @@
 package com.example.skeletonapp.View.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.skeletonapp.View.widgets.ButtonEdit
+import com.example.skeletonapp.View.widgets.TextLight
 import com.example.skeletonapp.ViewModel.UiState.Screen1UiState
 
 
@@ -39,77 +41,44 @@ fun MainScreen(
 
 ) {
 
-    val historicoEndereco= remember { mutableListOf<String>() }
-    var textoAntigo by rememberSaveable() {mutableStateOf("") }
+    val historicoEndereco = remember { mutableListOf<String>() }
+    var textoAntigo by rememberSaveable() { mutableStateOf("") }
 
 
-    Surface(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.Blue)
-    ) {
 
 
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            OutlinedTextField(
+    Box(modifier = Modifier.fillMaxSize()) {
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(18.dp),
+            modifier = Modifier.align(Alignment.TopEnd).statusBarsPadding()
+                .padding(top = 20.dp, end = 32.dp)
+        )
+        {
+            TextLight(
                 value = stateScreen.ip.trim(),
                 onValueChange = IpChange,
-                label = { Text("Digite o IP aqui: ") })
-            OutlinedTextField(
-                value = stateScreen.port,
+                placeholder = "Digite o IP aqui",
+                label = "IP",
+            )
+            TextLight(
+                value = stateScreen.port.trim(),
                 onValueChange = PortChange,
-                label = { Text("Digite a Porta aqui: ") })
-            ButtonEdit(
-                onClick = {Conectar()
-
-                },
-                text = "Ajuda",
-                modifier = Modifier.offset(y = 30.dp),
-                textColors = Color.Black,
-                enabled = stateScreen.connectionVerify
+                placeholder = "Digite a porta aqui",
+                label = "Porta",
             )
-            Spacer(Modifier.height(20.dp))
-            ButtonEdit(
-
-                onClick = {
-                    OscClick("/4")
-                    textoAntigo=stateScreen.ip
-                    historicoEndereco.add(textoAntigo)
-                },
-                text ="DisparoOsc",
-                modifier = Modifier.offset(y = 30.dp),
-                textColors = Color.Black,
-                enabled = stateScreen.connectionVerify
-            )
-            Spacer(Modifier.height(70.dp))
-
-            historicoEndereco.forEach { textoAtual->
-                textoAntigo=textoAtual
-            }
-
-            Text("Ultimo IP enviado: ${textoAntigo}")
-
-            }
-
-
-
-
-
 
 
         }
-
     }
-
-
-
-@Preview(showBackground = true, widthDp = 1340, heightDp = 800)
-@Composable
-fun GreetingPreview() {
-    MainScreen(Conectar = {}, TODO(),{},{},{})
 }
+
+
+
+
+
+
+
+
 
 

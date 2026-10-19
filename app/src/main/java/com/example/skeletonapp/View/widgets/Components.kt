@@ -277,3 +277,9 @@ fun Modifier.revelarDaEsquerda(progresso: () -> Float, larguraBorda: Float = 0.3
 
 
 
+
+
+
+
+
+
