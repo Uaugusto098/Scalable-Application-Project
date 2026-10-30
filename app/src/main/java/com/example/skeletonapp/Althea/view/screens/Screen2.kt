@@ -1,4 +1,4 @@
-package com.example.skeletonapp.View.screens
+package com.example.skeletonapp.Althea.view.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -23,8 +23,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.skeletonapp.View.widgets.ButtonEdit
-import com.example.skeletonapp.ViewModel.ViewScreen2
+import com.example.skeletonapp.Althea.view.widgets.ButtonEdit
+import com.example.skeletonapp.Althea.ViewModel.ViewScreen2
 
 
 @Composable

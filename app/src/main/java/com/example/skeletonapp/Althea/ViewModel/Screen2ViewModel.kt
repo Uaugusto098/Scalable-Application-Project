@@ -1,18 +1,10 @@
-package com.example.skeletonapp.ViewModel
+package com.example.skeletonapp.Althea.ViewModel
 
-import android.widget.Toast
-import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import com.example.skeletonapp.Model.osc.OscDestiny
-import com.example.skeletonapp.Model.osc.OscSender
 import com.example.skeletonapp.Model.repository.MainRepository
 import com.example.skeletonapp.Model.repository.SettingRepository
-import com.example.skeletonapp.ViewModel.UiState.Screen1UiState
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

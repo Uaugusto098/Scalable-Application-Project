@@ -1,4 +1,4 @@
-package com.example.skeletonapp.View.navigation
+package com.example.skeletonapp.Althea.view.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -9,10 +9,10 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.example.skeletonapp.View.screens.MainScreen
-import com.example.skeletonapp.View.screens.Screen2
-import com.example.skeletonapp.ViewModel.Screen1ViewModel
-import com.example.skeletonapp.ViewModel.Screen2ViewModel
+import com.example.skeletonapp.Althea.view.screens.MainScreen
+import com.example.skeletonapp.Althea.view.screens.Screen2
+import com.example.skeletonapp.Althea.ViewModel.Screen1ViewModel
+import com.example.skeletonapp.Althea.ViewModel.Screen2ViewModel
 
 
 //Arquivo responsável pela lógica das navegações de tela.

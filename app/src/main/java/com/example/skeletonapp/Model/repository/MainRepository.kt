@@ -11,15 +11,9 @@ import javax.inject.Singleton
 @Singleton
 class MainRepository @Inject constructor(private val oscSender: OscSender) {
 
-
-
      suspend fun sendCues(destino: OscDestiny, cena: String){
          oscSender.send(destino.ipSave, destino.portSave,cena,1)
     }
-
-
-
-
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.skeletonapp.View.navigation
+package com.example.skeletonapp.Althea.view.navigation
 
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable

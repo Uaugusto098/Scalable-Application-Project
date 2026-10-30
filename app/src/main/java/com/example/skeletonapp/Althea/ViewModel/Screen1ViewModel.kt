@@ -1,28 +1,19 @@
-package com.example.skeletonapp.ViewModel
+package com.example.skeletonapp.Althea.ViewModel
 
-import androidx.compose.runtime.key
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.skeletonapp.Model.osc.OscSender
 import com.example.skeletonapp.Model.repository.MainRepository
 import com.example.skeletonapp.Model.repository.SettingRepository
-import com.example.skeletonapp.ViewModel.UiState.Screen1UiState
+import com.example.skeletonapp.Althea.ViewModel.UiState.Screen1UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.IOException
-import java.net.UnknownHostException
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 // Arquivo responsável em administrar o estado da tela
@@ -44,9 +35,11 @@ class Screen1ViewModel @Inject constructor(private val repository: MainRepositor
 
     fun IpChange(newIp: String) {
         _uiState.update { it.copy(ip = newIp.trim()) }
+        DestinySave()
     }
     fun PortChange(newPort: String) {
         _uiState.update { it.copy(port = newPort.filter { c -> c.isDigit() }) }
+        DestinySave()
     }
     fun DestinySave(){
         val destino= uiState.value.destino?:return

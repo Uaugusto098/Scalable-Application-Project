@@ -1,4 +1,4 @@
-package com.example.skeletonapp.View
+package com.example.skeletonapp.Althea.view
 import androidx.compose.ui.graphics.Color
 
 // defina as cores do seu projeto como bem entender
@@ -8,3 +8,13 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
+
+//MITRE ATHEA COLORS
+
+val TextButton=Color(0xffFFFFFF)
+val TextPressed=Color(0xFF52647A)
+
+val buttonColor=Color(0xff03271D)
+val ButtonPressed=Color(0xff065741)
+
+

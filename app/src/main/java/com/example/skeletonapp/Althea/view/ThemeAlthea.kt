@@ -1,4 +1,4 @@
-package com.example.skeletonapp.View
+package com.example.skeletonapp.Althea.view
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

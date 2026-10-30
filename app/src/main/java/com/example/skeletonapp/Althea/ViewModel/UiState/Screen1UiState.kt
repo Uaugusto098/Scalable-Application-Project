@@ -1,4 +1,4 @@
-package com.example.skeletonapp.ViewModel.UiState
+package com.example.skeletonapp.Althea.ViewModel.UiState
 
 import com.example.skeletonapp.Model.osc.OscDestiny
 
