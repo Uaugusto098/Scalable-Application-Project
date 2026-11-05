@@ -58,9 +58,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.skeletonapp.Althea.view.ButtonPressed
-import com.example.skeletonapp.Althea.view.TextButton
-import com.example.skeletonapp.Althea.view.buttonColor
+import com.example.skeletonapp.Althea.view.PaletaRemota
 import kotlinx.coroutines.launch
 
 // + mantenha os imports das suas cores (buttonColor, ButtonPressed, TextButton)
@@ -72,17 +70,19 @@ fun ButtonEdit(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     fontSize: TextUnit = 30.sp,
-    textColors: Color = TextButton,
-    corBorda: Color = Color.Black,   // borda do botão
-    corOnda: Color = Color.Black,    // cor da onda ao apertar
-    onda: Boolean = true,            // false desliga a onda
+    textColors: Color = PaletaRemota.texto,
+    corBorda: Color = PaletaRemota.borda,
+    corOnda: Color = PaletaRemota.borda,
+    onda: Boolean = true,
+    corNormal: Color = PaletaRemota.normal,
+    corPressionado: Color = PaletaRemota.pressionado,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
 
     // Mesmo comportamento de cor que você já tinha
     val cor by animateColorAsState(
-        targetValue = if (isPressed) buttonColor else ButtonPressed,
+        targetValue = if (isPressed) corPressionado else corNormal,
         label = "corBotao"
     )
     val desabilitado = textColors.copy(alpha = 0.4f)
@@ -113,7 +113,7 @@ fun ButtonEdit(
         colors = ButtonDefaults.buttonColors(
             containerColor = cor,
             contentColor = textColors,
-            disabledContainerColor = ButtonPressed.copy(alpha = 0.45f),
+            disabledContainerColor = corNormal.copy(alpha = 0.45f),
             disabledContentColor = desabilitado
         ),
         modifier = modifier.drawBehind {

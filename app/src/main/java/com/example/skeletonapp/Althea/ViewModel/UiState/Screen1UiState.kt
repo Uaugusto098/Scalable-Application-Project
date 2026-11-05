@@ -1,8 +1,10 @@
 package com.example.skeletonapp.Althea.ViewModel.UiState
 
+import com.example.skeletonapp.Model.api.BotaoDto
 import com.example.skeletonapp.Model.osc.OscDestiny
 
 data class Screen1UiState(
+    val botoes: List<BotaoDto> = NameCues.cues.map { BotaoDto(it.nome, it.endereco) },
     val lastCue: String? = null,
     val sending: Boolean = false,
     val error: String? = null,
@@ -16,5 +18,6 @@ data class Screen1UiState(
         return if(ip.isNotBlank()) OscDestiny(ip,portaInt) else null
         }
     val connectionVerify: Boolean get() = destino!=null
+
 
 }

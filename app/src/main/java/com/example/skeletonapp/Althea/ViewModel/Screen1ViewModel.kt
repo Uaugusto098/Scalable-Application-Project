@@ -2,10 +2,15 @@ package com.example.skeletonapp.Althea.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.skeletonapp.Althea.ViewModel.UiState.Screen1UiState
+import com.example.skeletonapp.Althea.view.PaletaRemota
+import com.example.skeletonapp.BuildConfig
+import com.example.skeletonapp.Model.api.OscDto
+import com.example.skeletonapp.Model.repository.ConfigRepository
 import com.example.skeletonapp.Model.repository.MainRepository
 import com.example.skeletonapp.Model.repository.SettingRepository
-import com.example.skeletonapp.Althea.ViewModel.UiState.Screen1UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,20 +22,49 @@ import javax.inject.Inject
 
 
 // Arquivo responsável em administrar o estado da tela
-
 @HiltViewModel
-class Screen1ViewModel @Inject constructor(private val repository: MainRepository,private val settingRepository: SettingRepository) : ViewModel() {
-
+class Screen1ViewModel @Inject constructor(
+    private val repository: MainRepository,
+    private val settingRepository: SettingRepository,
+    private val configRepository: ConfigRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(Screen1UiState())
     val uiState: StateFlow<Screen1UiState> = _uiState.asStateFlow()
 
-    init{
-        viewModelScope.launch{ settingRepository.destino.first()?.let {salvo ->
-            _uiState.update{it.copy(ip = salvo.ipSave, port = salvo.portSave.toString())}
-        }}
+    private var ultimoOscRemoto: OscDto? = null
+
+    init {
+        // 1) botões da última config salva (aparecem na hora, mesmo sem rede)
+        viewModelScope.launch {
+            configRepository.config.collect { cfg ->
+                cfg ?: return@collect
+                PaletaRemota.aplicar(cfg.cores)          // <- nova
+                cfg.botoes.takeIf { it.isNotEmpty() }?.let { lista ->
+                    _uiState.update { it.copy(botoes = lista) }
+                }
+            }
+        }
+        // 2) IP/porta salvos, e depois fica consultando o servidor
+        viewModelScope.launch {
+            settingRepository.destino.first()?.let { salvo ->
+                _uiState.update { it.copy(ip = salvo.ipSave, port = salvo.portSave.toString()) }
+            }
+            while (true) {
+                atualizarConfig()
+                delay(60_000)
+            }
+        }
     }
 
+    private suspend fun atualizarConfig() {
+        val osc = configRepository.atualizar(BuildConfig.CONFIG_ARQUIVO)?.osc ?: return
+        if (osc == ultimoOscRemoto) return
+        if (osc.ip.isBlank() || osc.porta !in 1..65535) return
+        ultimoOscRemoto = osc
+        _uiState.update { it.copy(ip = osc.ip.trim(), port = osc.porta.toString()) }
+        DestinySave()
+    }
 
 
     fun IpChange(newIp: String) {

@@ -17,6 +17,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -48,6 +49,7 @@ import com.example.skeletonapp.R
 import com.example.skeletonapp.Althea.view.widgets.ButtonEdit
 import com.example.skeletonapp.Althea.view.widgets.TextLight
 import com.example.skeletonapp.Althea.ViewModel.UiState.Screen1UiState
+import kotlinx.coroutines.flow.Flow
 
 
 // Arquivo responsável pelo design das telas e visualização do sistema
@@ -66,6 +68,8 @@ fun MainScreen(
     var InputsMode by remember { mutableStateOf(false) }
 
     // Engrenagem gira 90° ao abrir e volta ao fechar, com uma leve "acomodada" no fim
+
+
     val rotacaoEngrenagem by animateFloatAsState(
         targetValue = if (InputsMode) 90f else 0f,
         animationSpec = spring(
@@ -81,6 +85,7 @@ fun MainScreen(
             contentScale = ContentScale.Crop
         )
     ) {
+
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -134,10 +139,10 @@ fun MainScreen(
                 }
             }
 
-            // Engrenagem: fica fixa no canto
+
             IconButton(onClick = {
                 InputsMode = !InputsMode
-                if (!InputsMode) focusManager.clearFocus() // fecha o teclado ao recolher
+                if (!InputsMode) focusManager.clearFocus()
             }) {
                 Icon(
                     imageVector = Icons.Default.Settings,
@@ -158,16 +163,17 @@ fun MainScreen(
                     .offset(y = -60.dp)
             )
 
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(20.dp),
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterHorizontally),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
                 modifier = Modifier.align(Alignment.BottomCenter).offset(y = -25.dp, x = -5.dp)
             ) {
-                for (cue in NameCues.cues) {
+                for (botao in stateScreen.botoes) {
                     ButtonEdit(
-                        onClick = { OscClick(cue.endereco) },
-                        text = cue.nome,
+                        onClick = { OscClick(botao.endereco) },
+                        text = botao.nome,
                         enabled = stateScreen.connectionVerify,
-                        modifier = Modifier.width(200.dp).height(70.dp),
+                        modifier = Modifier.width(botao.larguraDp.dp).height(botao.alturaDp.dp),
                         fontSize = 18.sp
                     )
                 }
