@@ -33,7 +33,6 @@ class Screen1ViewModelMitre @Inject constructor(
     private var ultimoOscRemoto: OscDto? = null
 
     init {
-        // 1) botões da última config salva (aparecem na hora, mesmo sem rede)
         viewModelScope.launch {
             configRepository.config.collect { cfg ->
                 cfg ?: return@collect
@@ -43,7 +42,6 @@ class Screen1ViewModelMitre @Inject constructor(
                 }
             }
         }
-        // 2) IP/porta salvos, e depois fica consultando o servidor
         viewModelScope.launch {
             settingRepository.destino.first()?.let { salvo ->
                 _uiState.update { it.copy(ip = salvo.ipSave, port = salvo.portSave.toString()) }
@@ -69,35 +67,34 @@ class Screen1ViewModelMitre @Inject constructor(
         _uiState.update { it.copy(ip = newIp.trim()) }
         DestinySave()
     }
+
     fun PortChange(newPort: String) {
         _uiState.update { it.copy(port = newPort.filter { c -> c.isDigit() }) }
         DestinySave()
     }
-    fun DestinySave(){
-        val destino= uiState.value.destino?:return
+
+    fun DestinySave() {
+        val destino = uiState.value.destino ?: return
         viewModelScope.launch { settingRepository.savePrefsDestiny(destino) }
     }
 
     fun OscClick(cena: String) {
-        val destino=uiState.value.destino?:return
+        val destino = uiState.value.destino ?: return
         viewModelScope.launch {
             _uiState.update { it.copy(sending = true, error = null) }
             try {
 
                 _uiState.update { it.copy(sending = true, error = "Envio realizado") }
-                repository.sendCues(destino,cena)
-            }
-
-            catch (e: IOException) {
+                repository.sendCues(destino, cena)
+            } catch (e: IOException) {
                 _uiState.update {
                     it.copy(
                         sending = false,
                         error = "Cena não disparada, erro no envio:${e.message}"
                     )
                 }
-            }
-            finally {
-                _uiState.update{it.copy(sending=false)}
+            } finally {
+                _uiState.update { it.copy(sending = false) }
             }
         }
 

@@ -1,7 +1,6 @@
-package com.example.skeletonapp.Althea.view.widgets
+package com.example.skeletonapp.widgets
 
 
-// Arquivo responsável em armazenar componentes de tela prontos para serem reutilizados
 
 
 import androidx.compose.animation.animateColorAsState
@@ -61,7 +60,6 @@ import androidx.compose.ui.unit.sp
 import com.example.skeletonapp.Althea.view.PaletaRemota
 import kotlinx.coroutines.launch
 
-// + mantenha os imports das suas cores (buttonColor, ButtonPressed, TextButton)
 
 @Composable
 fun ButtonEdit(
@@ -80,19 +78,16 @@ fun ButtonEdit(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
 
-    // Mesmo comportamento de cor que você já tinha
     val cor by animateColorAsState(
         targetValue = if (isPressed) corPressionado else corNormal,
         label = "corBotao"
     )
     val desabilitado = textColors.copy(alpha = 0.4f)
 
-    // 0 = onda começando na borda, 1 = onda terminada (invisível)
     val progresso = remember { Animatable(1f) }
     val scope = rememberCoroutineScope()
     LaunchedEffect(isPressed) {
         if (isPressed && onda) {
-            // roda fora do LaunchedEffect para não ser cancelada quando o dedo soltar
             scope.launch {
                 progresso.snapTo(0f)
                 progresso.animateTo(1f, tween(550, easing = FastOutSlowInEasing))

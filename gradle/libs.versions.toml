@@ -20,9 +20,8 @@ kotlinxSerializationCore = "1.9.0"
 material3AdaptiveNav3 = "1.4.0-alpha02"
 uiText = "1.12.1"
 datastore="1.2.1"
-
-
-
+retrofit="3.0.0"
+kotlinxSerializationJson="1.9.0"
 
 
 [libraries]
@@ -55,15 +54,18 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-compose-ui-text = { group = "androidx.compose.ui", name = "ui-text", version.ref = "uiText" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 [plugins]
 android-application= { id = "com.android.application",          version.ref = "agp" }
 kotlin-compose= { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp= { id = "com.google.devtools.ksp",           version.ref = "ksp" }
 hilt= { id = "com.google.dagger.hilt.android",    version.ref = "hilt" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+
 jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
 
 

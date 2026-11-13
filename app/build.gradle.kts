@@ -26,7 +26,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources=true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -40,7 +41,40 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
+        resValues = true
     }
+
+
+    flavorDimensions+="clientes"
+    productFlavors {
+        create("althea"){
+            dimension="clientes"
+            applicationIdSuffix=".Althea"
+            resValue("string","app_name","AltheaApp")
+            buildConfigField("String", "CONFIG_BASE_URL",
+                "\"https://raw.githubusercontent.com/Uaugusto098/plexus-configs/main/\"")
+            buildConfigField("String", "CONFIG_ARQUIVO", "\"althea.json\"")
+        }
+
+        create("mitre"){
+            dimension="clientes"
+            applicationIdSuffix=".mitrecasa"
+            resValue("string","app_name","MitreApp")
+            buildConfigField("String", "CONFIG_BASE_URL",
+                "\"https://raw.githubusercontent.com/Uaugusto098/plexus-configs/main/\"")
+            buildConfigField("String", "CONFIG_ARQUIVO", "\"mitre.json\"")
+        }
+        create("naeem"){
+            dimension="clientes"
+            applicationIdSuffix=".naeem"
+            resValue("string","app_name","NaeemApp")
+            buildConfigField("String", "CONFIG_BASE_URL",
+                "\"https://raw.githubusercontent.com/Uaugusto098/plexus-configs/main/\"")
+            buildConfigField("String", "CONFIG_ARQUIVO", "\"naeem.json\"")
+        }
+    }
+
 
     packaging {
         resources {
@@ -89,4 +123,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.json)
+
+
+
 }

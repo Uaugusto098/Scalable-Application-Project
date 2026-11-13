@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.skeletonapp.Althea.view.widgets.ButtonEdit
+import com.example.skeletonapp.widgets.ButtonEdit
 import com.example.skeletonapp.Althea.ViewModel.ViewScreen2
 
 

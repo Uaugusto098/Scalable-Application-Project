@@ -14,31 +14,31 @@ import com.example.skeletonapp.mitrecasa.viewmodel.Screen1ViewModelMitre
 
 
 @Composable
-    fun AppNavigationMitre() {
-        val backStack = rememberNavBackStack(ScreenKey1Mitre)
-        NavDisplay(
-            backStack = backStack,
-            onBack = { backStack.removeLastOrNull() },
-            entryDecorators = listOf(
-                rememberSaveableStateHolderNavEntryDecorator(),
-                rememberViewModelStoreNavEntryDecorator()
-            ),
-            entryProvider = entryProvider {
+fun AppNavigationMitre() {
+    val backStack = rememberNavBackStack(ScreenKey1Mitre)
+    NavDisplay(
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryDecorators = listOf(
+            rememberSaveableStateHolderNavEntryDecorator(),
+            rememberViewModelStoreNavEntryDecorator()
+        ),
+        entryProvider = entryProvider {
 
-                entry<ScreenKey1Mitre> {
-                    val viewModel: Screen1ViewModelMitre = hiltViewModel()
-                    val state by viewModel.uiState.collectAsStateWithLifecycle()
-                    MainScreenMitre(
-                        stateScreen = state,
-                        ipChange = viewModel::IpChange,
-                        portChange = viewModel::PortChange,
-                        oscClick = viewModel::OscClick
+            entry<ScreenKey1Mitre> {
+                val viewModel: Screen1ViewModelMitre = hiltViewModel()
+                val state by viewModel.uiState.collectAsStateWithLifecycle()
+                MainScreenMitre(
+                    stateScreen = state,
+                    ipChange = viewModel::IpChange,
+                    portChange = viewModel::PortChange,
+                    oscClick = viewModel::OscClick
 
 
-                    )
-                }
-            })
-    }
+                )
+            }
+        })
+}
 
 
 

@@ -1,6 +1,5 @@
 package com.example.skeletonapp.Althea.view.screens
 
-import NameCues
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Spring
@@ -46,10 +45,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.skeletonapp.R
-import com.example.skeletonapp.Althea.view.widgets.ButtonEdit
-import com.example.skeletonapp.Althea.view.widgets.TextLight
+import com.example.skeletonapp.widgets.ButtonEdit
+import com.example.skeletonapp.widgets.TextLight
 import com.example.skeletonapp.Althea.ViewModel.UiState.Screen1UiState
-import kotlinx.coroutines.flow.Flow
 
 
 // Arquivo responsável pelo design das telas e visualização do sistema

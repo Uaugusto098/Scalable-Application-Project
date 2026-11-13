@@ -25,6 +25,7 @@ class SettingRepository @Inject constructor(@ApplicationContext private val cont
     private object Chaves{
         val IP=stringPreferencesKey("osc_ip")
         val PORT=intPreferencesKey("osc_port")
+        val CONFIG_JSON=stringPreferencesKey("config_json")
     }
 
     val destino:Flow<OscDestiny?> = context.dataStore.data.map { prefs->
@@ -33,12 +34,17 @@ class SettingRepository @Inject constructor(@ApplicationContext private val cont
         if(ipSave!=null && portSave!=null) OscDestiny(ipSave=ipSave,portSave=portSave) else null
     }
 
+    val configJson: Flow<String?> = context.dataStore.data.map { it[Chaves.CONFIG_JSON] }
 
     suspend fun savePrefsDestiny(destino: OscDestiny){
         context.dataStore.edit{prefs->
             prefs[Chaves.IP]=destino.ipSave
             prefs[Chaves.PORT]=destino.portSave
         }
+    }
+
+    suspend fun saveConfigJson(json:String){
+        context.dataStore.edit { it[Chaves.CONFIG_JSON]=json }
     }
 
 

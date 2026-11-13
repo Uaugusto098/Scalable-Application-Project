@@ -49,11 +49,10 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.skeletonapp.Althea.view.widgets.ButtonEdit
-import com.example.skeletonapp.Althea.view.widgets.TextLight
 import com.example.skeletonapp.R
 import com.example.skeletonapp.mitrecasa.viewmodel.Screen1UiStateMitre
-
+import com.example.skeletonapp.widgets.ButtonEdit
+import com.example.skeletonapp.widgets.TextLight
 
 
 private val LarguraMaxConteudo = 1100.dp
@@ -94,7 +93,9 @@ fun MainScreenMitre(
     ) {
 
         Column(
-            modifier = Modifier.fillMaxSize().systemBarsPadding(),
+            modifier = Modifier
+                .fillMaxSize()
+                .systemBarsPadding(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.weight(1f))
@@ -111,7 +112,10 @@ fun MainScreenMitre(
             Spacer(Modifier.height(EspacoLogoBotoes))
 
             FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(EspacoEntreBotoes, Alignment.CenterHorizontally),
+                horizontalArrangement = Arrangement.spacedBy(
+                    EspacoEntreBotoes,
+                    Alignment.CenterHorizontally
+                ),
                 verticalArrangement = Arrangement.spacedBy(EspacoEntreBotoes),
                 modifier = Modifier
                     .widthIn(max = LarguraMaxConteudo)
@@ -123,7 +127,9 @@ fun MainScreenMitre(
                         onClick = { oscClick(botao.endereco) },
                         text = botao.nome,
                         enabled = stateScreen.connectionVerify,
-                        modifier = Modifier.width(botao.larguraDp.dp).height(botao.alturaDp.dp),
+                        modifier = Modifier
+                            .width(botao.larguraDp.dp)
+                            .height(botao.alturaDp.dp),
                         fontSize = 18.sp
                     )
                 }
