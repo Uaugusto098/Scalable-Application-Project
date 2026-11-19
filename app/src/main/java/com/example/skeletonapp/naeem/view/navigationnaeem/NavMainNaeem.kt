@@ -1,4 +1,4 @@
-package com.example.skeletonapp.naeem.View.navigationnaeem
+package com.example.skeletonapp.naeem.view.navigationnaeem
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -9,8 +9,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.example.skeletonapp.naeem.View.MainScreenNaeem
-import com.example.skeletonapp.naeem.ViewModel.Screen1ViewModelNaeem
+import com.example.skeletonapp.naeem.view.MainScreenNaeem
+import com.example.skeletonapp.naeem.viewmodel.Screen1ViewModelNaeem
 
 
 @Composable

@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import com.example.skeletonapp.Althea.view.SkeletonAppTheme
 import com.example.skeletonapp.Althea.view.navigation.AppNavigation
 import com.example.skeletonapp.mitrecasa.view.navigationMitre.AppNavigationMitre
-import com.example.skeletonapp.naeem.View.navigationnaeem.AppNavigationNaeem
+import com.example.skeletonapp.naeem.view.navigationnaeem.AppNavigationNaeem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

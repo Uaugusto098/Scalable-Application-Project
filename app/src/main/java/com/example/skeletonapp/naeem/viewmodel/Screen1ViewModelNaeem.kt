@@ -1,4 +1,4 @@
-package com.example.skeletonapp.naeem.ViewModel
+package com.example.skeletonapp.naeem.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

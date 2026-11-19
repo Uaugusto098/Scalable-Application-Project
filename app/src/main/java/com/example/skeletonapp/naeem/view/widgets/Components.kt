@@ -1,4 +1,4 @@
-package com.example.skeletonapp.naeem.View.widgets
+package com.example.skeletonapp.naeem.view.widgets
 
 // Componentes visuais só do app Naeem (campos dourados e botão de imagem).
 

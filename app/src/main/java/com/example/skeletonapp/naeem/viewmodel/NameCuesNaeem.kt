@@ -1,4 +1,4 @@
-package com.example.skeletonapp.naeem.ViewModel
+package com.example.skeletonapp.naeem.viewmodel
 
 import com.example.skeletonapp.Model.api.BotaoDto
 

@@ -1,4 +1,4 @@
-package com.example.skeletonapp.naeem.View
+package com.example.skeletonapp.naeem.view
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -40,9 +40,9 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.skeletonapp.R
-import com.example.skeletonapp.naeem.View.widgets.BotaoImagem
-import com.example.skeletonapp.naeem.View.widgets.TextLightNaeem
-import com.example.skeletonapp.naeem.ViewModel.Screen1UiStateNaeem
+import com.example.skeletonapp.naeem.view.widgets.BotaoImagem
+import com.example.skeletonapp.naeem.view.widgets.TextLightNaeem
+import com.example.skeletonapp.naeem.viewmodel.Screen1UiStateNaeem
 
 
 private val BaseLinhaCima = 780.dp

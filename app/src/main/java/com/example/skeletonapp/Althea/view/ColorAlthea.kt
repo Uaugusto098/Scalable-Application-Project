@@ -20,6 +20,7 @@ val TextPressed=Color(0xFF52647A)
 
 val buttonColor=Color(0xff03271D)
 val ButtonPressed=Color(0xff065741)
+val buttonExtra=Color(0xffD4D4D4)
 
 val numero=0xff000000
 val colorBorda=Color(numero)
@@ -27,7 +28,6 @@ val colorBorda=Color(numero)
 private fun String.paraCor(padrao: Color): Color =
     runCatching { Color(android.graphics.Color.parseColor(this)) }.getOrDefault(padrao)
 
-/** Cores atuais do app. Começam com as suas cores e são trocadas quando o JSON chega. */
 object PaletaRemota {
     var normal by mutableStateOf(ButtonPressed)
     var pressionado by mutableStateOf(buttonColor)

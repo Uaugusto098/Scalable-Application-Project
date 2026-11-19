@@ -51,8 +51,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.skeletonapp.R
 import com.example.skeletonapp.mitrecasa.viewmodel.Screen1UiStateMitre
-import com.example.skeletonapp.widgets.ButtonEdit
-import com.example.skeletonapp.widgets.TextLight
+import com.example.skeletonapp.widgetsgeral.ButtonEdit
+import com.example.skeletonapp.widgetsgeral.TextLight
 
 
 private val LarguraMaxConteudo = 1100.dp

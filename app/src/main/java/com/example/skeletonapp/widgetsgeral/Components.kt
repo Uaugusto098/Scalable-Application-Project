@@ -1,4 +1,4 @@
-package com.example.skeletonapp.widgets
+package com.example.skeletonapp.widgetsgeral
 
 
 

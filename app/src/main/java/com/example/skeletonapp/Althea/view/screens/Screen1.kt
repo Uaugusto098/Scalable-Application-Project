@@ -45,9 +45,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.skeletonapp.R
-import com.example.skeletonapp.widgets.ButtonEdit
-import com.example.skeletonapp.widgets.TextLight
+import com.example.skeletonapp.widgetsgeral.ButtonEdit
+import com.example.skeletonapp.widgetsgeral.TextLight
 import com.example.skeletonapp.Althea.ViewModel.UiState.Screen1UiState
+import com.example.skeletonapp.Althea.view.buttonExtra
 
 
 // Arquivo responsável pelo design das telas e visualização do sistema
@@ -65,7 +66,6 @@ fun MainScreen(
     val focusManager = LocalFocusManager.current
     var InputsMode by remember { mutableStateOf(false) }
 
-    // Engrenagem gira 90° ao abrir e volta ao fechar, com uma leve "acomodada" no fim
 
 
     val rotacaoEngrenagem by animateFloatAsState(
@@ -117,7 +117,9 @@ fun MainScreen(
                     animationSpec = tween(durationMillis = 250, easing = FastOutSlowInEasing),
                     targetOffsetX = { it / 3 }
                 ) + fadeOut(animationSpec = tween(durationMillis = 150))
-            ) {
+            )
+
+            {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(18.dp),
                     modifier = Modifier.padding(end = 18.dp)
@@ -175,6 +177,23 @@ fun MainScreen(
                         fontSize = 18.sp
                     )
                 }
+            }
+
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(20.dp,Alignment.CenterHorizontally),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+                modifier=Modifier.align(Alignment.BottomCenter).offset(y=30.dp,x=-440.dp)){
+                ButtonEdit(
+                    onClick = {OscClick("/3")},
+                    text="",
+                    enabled=stateScreen.connectionVerify,
+                    modifier=Modifier.width(100.dp).height(60.dp),
+                    corBorda = buttonExtra,
+                    corOnda = buttonExtra,
+                    corNormal = buttonExtra,
+                    corPressionado = buttonExtra,
+
+
+                )
             }
         }
     }
