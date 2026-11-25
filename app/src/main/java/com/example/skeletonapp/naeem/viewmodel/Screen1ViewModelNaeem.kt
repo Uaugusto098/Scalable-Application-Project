@@ -22,10 +22,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class Screen1ViewModelNaeem @Inject constructor(
-
     private val repository: MainRepository,
     private val settingRepository: SettingRepository,
-    private val configRepository: ConfigRepository): ViewModel(){
+    private val configRepository: ConfigRepository
+) : ViewModel() {
 
 
         private val _uiState= MutableStateFlow(Screen1UiStateNaeem())

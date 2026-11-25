@@ -16,11 +16,8 @@ import javax.inject.Singleton
 // Arquivo responsável pelo assunto do app, como Cena. O SettingsRepository guarda e lê as preferências do operador.
  private val Context.dataStore by preferencesDataStore(name = "settings")
 
-
 @Singleton
 class SettingRepository @Inject constructor(@ApplicationContext private val context: Context) {
-
-
 
     private object Chaves{
         val IP=stringPreferencesKey("osc_ip")
@@ -46,7 +43,6 @@ class SettingRepository @Inject constructor(@ApplicationContext private val cont
     suspend fun saveConfigJson(json:String){
         context.dataStore.edit { it[Chaves.CONFIG_JSON]=json }
     }
-
 
 
 }

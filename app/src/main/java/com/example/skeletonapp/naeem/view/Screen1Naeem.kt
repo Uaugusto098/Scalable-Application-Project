@@ -1,5 +1,4 @@
 package com.example.skeletonapp.naeem.view
-
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.Spring
